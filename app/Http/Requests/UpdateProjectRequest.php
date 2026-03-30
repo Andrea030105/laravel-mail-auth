@@ -30,6 +30,7 @@ class UpdateProjectRequest extends FormRequest
             'type_id'        => ['nullable', 'exists:types,id'],
             'technologies'   => ['nullable', 'array'],
             'technologies.*' => ['exists:technologies,id'],
+            'image' => ['nullable']
         ];
     }
 
