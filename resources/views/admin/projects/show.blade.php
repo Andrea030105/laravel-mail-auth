@@ -6,8 +6,10 @@
                 <div class="card">
                     <h5 class="card-header">{{ $project->title }}</h5>
                     <div class="card-body">
-                        <img src="{{ asset('storage/' . $project->image) }}" class="img-project-width my-2"
-                            alt="{{ $project->title }}">
+                        @if ($project->image)
+                            <img src="{{ asset('storage/' . $project->image) }}" class="img-project-width my-2"
+                                alt="{{ $project->title }}">
+                        @endif
                         <h5><strong>Linguaggio</strong>: {{ $project->type?->name ?? 'Non Specificato' }}</h5>
                         <h5><strong>Tecnologia</strong>:
                             @forelse($project->technologies as $technology)
