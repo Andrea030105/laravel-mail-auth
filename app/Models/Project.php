@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['title', 'description', 'slug', 'type_id'];
+    protected $fillable = ['title', 'description', 'slug', 'type_id', 'image'];
 
     public function type()
     {

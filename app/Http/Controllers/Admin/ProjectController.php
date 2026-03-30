@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
@@ -39,6 +40,10 @@ class ProjectController extends Controller
     {
         $from_data = $request->all();
 
+        if ($request->hasFile('image')) {
+            $img_path = Storage::disk('public')->put('uploads', $from_data['image']);
+        }
+        $from_data['image'] = $img_path;
         $slug = Str::slug($request->title, '-');
         $from_data['slug'] = $slug;
         $newProject = Project::create($from_data);
