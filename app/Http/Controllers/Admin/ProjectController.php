@@ -12,6 +12,10 @@ use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewContact;
+use App\Models\Lead;
+
 class ProjectController extends Controller
 {
     /**
@@ -51,6 +55,10 @@ class ProjectController extends Controller
         if ($request->has('technologies')) {
             $newProject->technologies()->attach($request->technologies);
         }
+
+        $newLead = Lead::create($from_data);
+
+        Mail::to('info@boolpress.com')->send(new NewContact($newLead));
 
         return redirect()->route('admin.projects.index')->with('message', 'Project created correctly!!');
     }
